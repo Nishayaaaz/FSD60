@@ -1,0 +1,114 @@
+1) function deepEqual(obj1, obj2) {
+    Check if both inputs are objects and not null
+    if (typeof obj1 !== 'object' || obj1 === null || typeof obj2 !== 'object' || obj2 === null) {
+        return obj1 === obj2;
+    }
+
+    // Check if both are arrays
+    if (Array.isArray(obj1) && Array.isArray(obj2)) {
+        if (obj1.length !== obj2.length) {
+            return false;
+        }
+        for (let i = 0; i < obj1.length; i++) {
+            if (!deepEqual(obj1[i], obj2[i])) {
+                return false;
+            }
+        }
+        return true;
+    } else if (Array.isArray(obj1) !== Array.isArray(obj2)) {
+        return false;
+    }
+
+    // Get the keys of both objects
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+
+    // Check if the number of keys is different
+    if (keys1.length !== keys2.length) {
+        return false;
+    }
+
+    // Check if all keys and values are the same
+    for (let key of keys1) {
+        if (!keys2.includes(key) || !deepEqual(obj1[key], obj2[key])) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+// Example usage
+const json1 = {
+    "name": "John",
+    "age": 30,
+    "address": {
+        "city": "New York",
+        "zip": "10001"
+    }
+};
+
+const json2 = {
+    "address": {
+        "zip": "10001",
+        "city": "New York"
+    },
+    "name": "John",
+    "age": 30
+};
+
+console.log(deepEqual(json1, json2)); // Output: true
+
+
+
+2) Use the rest countries'API URL->https://rest countries.com/v3.1/all and display all the country flags in the console
+
+
+// Fetch data from the Rest Countries API
+fetch('https://restcountries.com/v3.1/all')
+    .then(response => {
+        // Check if the response is OK (status code 200)
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        // Convert the response to JSON
+        return response.json();
+    })
+    .then(data => {
+        // Loop through the data and log each country's flag to the console
+        data.forEach(country => {
+            console.log(country.flags.png); // Log the URL of the flag image (in PNG format)
+        });
+    })
+    .catch(error => {
+        // Handle any errors that occur during the fetch operation
+        console.error('Error fetching country data:', error);
+    });
+
+
+3) Use the same rest countries and print all countries and print all countries,names,regions,sub-region and population
+
+// Fetch data from the Rest Countries API
+fetch('https://restcountries.com/v3.1/all')
+    .then(response => {
+        // Check if the response is OK (status code 200)
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        // Convert the response to JSON
+        return response.json();
+    })
+    .then(data => {
+        // Loop through the data and log each country's details
+        data.forEach(country => {
+            const name = country.name.common;
+            const region = country.region;
+            const subRegion = country.subregion;
+            const population = country.population;
+            console.log(`Country: ${name}, Region: ${region}, Sub-Region: ${subRegion}, Population: ${population}`);
+        });
+    })
+    .catch(error => {
+        // Handle any errors that occur during the fetch operation
+        console.error('Error fetching country data:', error);
+    });
