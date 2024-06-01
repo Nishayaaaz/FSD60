@@ -1,0 +1,112 @@
+{
+    "personalInformation": {
+        "name": "Nisha",
+        "address": {
+            "street": "123 Main St",
+            "city": "Chennai",
+            "state": "TamilNadu",
+            "zip": "60001",
+            "country": "INDIA"
+        },
+        "contact": {
+            "phone": "+1-234-567-8901",
+            "email": "hayaazashraf@gmail.com",
+            "linkedin": "https://www.linkedin.com/in/Nishahayaaz",
+            "github": "https://github.com/Nishahayaaz"
+        }
+    },
+    "professionalSummary": "Experienced software engineer with a strong background in full-stack development, specializing in JavaScript frameworks. Proven track record of delivering high-quality software solutions on time and within budget. Excellent problem-solving skills and a passion for continuous learning.",
+    "skills": [
+        "JavaScript",
+        "React",
+        "Node.js",
+        "Express",
+        "HTML",
+        "CSS",
+        "Python",
+        "Django",
+        "SQL",
+        "NoSQL",
+        "Git",
+        "Docker",
+        "AWS"
+    ],
+    "workExperience": [
+        {
+            "jobTitle": "Team Leader",
+            "company": "Reliance Retail",
+            "location": "Chennai",
+            "startDate": "2020-01-01",
+            "endDate": "Present",
+          ]
+        },
+      
+       
+    ],
+    "education": [
+        {
+            "degree": "Bachelor of Science in Information Technology",
+            "institution": "Madras University",
+            "location": "Chennai",
+            "graduationDate": "2015-05-01"
+        }
+    ],
+   
+       
+    "projects": [
+        {
+            "name": "E-commerce Platform",
+            "description": "Developed a full-featured e-commerce platform with user authentication, product listings, shopping cart, and payment integration.",
+            "technologies": ["React", "Node.js", "Express", "MongoDB"],
+            "role": "Full-Stack Developer",
+            "url": "https://github.com/johndoe/ecommerce-platform"
+        },
+        {
+            "name": "Real-Time Chat Application",
+            "description": "Built a real-time chat application with WebSocket for live messaging and notifications.",
+            "technologies": ["React", "Node.js", "Socket.io"],
+            "role": "Backend Developer",
+            "url": "https://github.com/Nisha"
+        }
+    ],
+    "languages": [
+        {
+            "language": "Tamil",
+            "proficiency": "Native"
+        },
+        {
+            "language": "English",
+            "proficiency": "ProfessionalWorking Proficiency"
+        }
+    ],
+    "interests": [
+        "Open Source Contribution",
+        "Machine Learning",
+        "Blockchain Technology",
+        "Traveling",
+        "Photography"
+    ]
+}
+// Using for loop
+console.log('Using for loop:');
+for (let i = 0; i < resume.skills.length; i++) {
+    console.log(resume.skills[i]);
+
+// Using for...in loop
+console.log('\nUsing for...in loop:');
+for (let key in resume.personalInformation) {
+    if (resume.personalInformation.hasOwnProperty(key)) {
+        console.log(`${key}: ${JSON.stringify(resume.personalInformation[key])}`);
+    }
+}
+// Using for...of loop
+console.log('\nUsing for...of loop:');
+for (let work of resume.workExperience) {
+    console.log(`Job Title: ${work.jobTitle}, Company: ${work.company}`);
+}
+
+// Using forEach loop
+console.log('\nUsing forEach loop:');
+resume.projects.forEach(project => {
+    console.log(`Project Name: ${project.name}, Description: ${project.description}`);
+});
