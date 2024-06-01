@@ -1,0 +1,133 @@
+1) Write a blog on difference between HTTP 1.vs HTTP 2
+
+The Hypertext Transfer Protocol (HTTP) has been the foundation of data communication for the World Wide Web. As the web evolved, the need for a more efficient protocol became apparent, leading to the development of HTTP/2. Here, we explore the key differences between HTTP/1.1 and HTTP/2, highlighting how the newer protocol improves web performance and user experience.
+
+1.MULTIPLEXING
+
+HTTP/1.1
+In HTTP/1.1, each request/response pair requires a separate TCP connection. This means multiple connections need to be opened to handle simultaneous requests, leading to inefficiencies like head-of-line blocking, where the blocking of a single request delays all subsequent requests.
+
+HTTP/2
+HTTP/2 introduces multiplexing, allowing multiple requests and responses to be sent simultaneously over a single TCP connection. This significantly reduces latency and improves the efficiency of data transfer.
+
+2. Header Compression
+HTTP/1.1
+HTTP/1.1 headers are sent as plain text, often containing redundant information that needs to be transmitted repeatedly, leading to increased overhead.
+
+HTTP/2
+HTTP/2 uses the HPACK compression algorithm to compress headers, reducing the size of the headers and thereby decreasing the amount of data that needs to be transferred. This results in faster communication between the client and server.
+
+3. Server Push
+HTTP/1.1
+In HTTP/1.1, a server can only respond to requests made by the client. This means that even if the server knows the client will need additional resources, it cannot proactively send them.
+  
+HTTP/2
+HTTP/2 introduces server push, allowing the server to send resources to the client before they are explicitly requested. For example, if a client requests an HTML page, the server can also send CSS and JavaScript files that the page will require, reducing load times.
+
+4. Stream Prioritization
+HTTP/1.1
+HTTP/1.1 does not support prioritizing different requests within the same connection. All requests are treated equally, which can lead to inefficient resource loading.
+
+HTTP/2
+HTTP/2 allows clients to assign priority levels to streams. This means important resources can be loaded first, improving the overall performance and responsiveness of web applications.
+
+5. Connection Management
+HTTP/1.1
+Maintaining multiple TCP connections in HTTP/1.1 can lead to network congestion and increased resource usage. Connection reuse is limited, and managing these connections efficiently is challenging.
+
+HTTP/2
+By using a single, long-lived connection for multiple requests and responses, HTTP/2 reduces the overhead associated with opening and closing multiple connections. This also helps in reducing the load on servers and clients.
+
+6. Security
+HTTP/1.1
+HTTP/1.1 does not mandate encryption, though HTTPS (HTTP over TLS) can be used to secure communication.
+
+HTTP/2
+While HTTP/2 can technically be used without encryption, major browsers have chosen to implement it only over TLS (Transport Layer Security). This ensures a higher level of security for data transmitted over HTTP/2.
+
+Conclusion
+The transition from HTTP/1.1 to HTTP/2 represents a significant improvement in web communication. HTTP/2's features like multiplexing, header compression, server push, stream prioritization, and better connection management collectively enhance web performance, reduce latency, and provide a better user experience. As the internet continues to grow and evolve, adopting HTTP/2 is crucial for optimizing web performance and ensuring efficient, secure, and reliable data transfer.
+
+Understanding these differences helps web developers and network administrators make informed decisions about upgrading their systems and leveraging the benefits of HTTP/2 for improved web performance.
+
+
+
+2) Write a blog about objects and its internal representation in Javascript 
+
+JavaScript, a versatile and dynamic programming language, relies heavily on objects to manage and manipulate data. Whether you're dealing with arrays, functions, or custom data structures, understanding how objects work and how they are represented internally in JavaScript is crucial for writing efficient and effective code. In this blog, we'll delve into the intricacies of JavaScript objects, their properties, and their internal representation.
+
+What Are Objects in JavaScript?
+In JavaScript, objects are collections of key-value pairs, where keys are strings (or symbols) and values can be any data type, including other objects. Objects are a fundamental part of JavaScript, providing a way to group related data and functionality together.
+
+Here's a simple example of an object in JavaScript:
+
+javascript
+Copy code
+const person = {
+    name: "John Doe",
+    age: 30,
+    greet: function() {
+        console.log(`Hello, my name is ${this.name}`);
+    }
+};
+In this example, person is an object with three properties: name, age, and greet. The greet property is a method, demonstrating that objects can also hold functions.
+
+Internal Representation of Objects
+Under the hood, JavaScript engines use various techniques to represent and optimize objects. Let's explore some key concepts:
+
+1. Property Storage
+JavaScript objects use two main kinds of storage for properties:
+
+Inline Properties: Properties are stored directly in the object structure if their names are known at compile time.
+Dictionary Mode: When an object is highly dynamic and properties are frequently added or deleted, JavaScript engines switch to a more flexible storage mechanism, often referred to as dictionary mode. In this mode, properties are stored in a hash table to allow for faster access.
+2. Hidden Classes and Inline Caches
+JavaScript engines like V8 (used in Google Chrome and Node.js) use hidden classes and inline caches to optimize object property access.
+
+Hidden Classes: Similar to classes in traditional object-oriented languages, hidden classes are used internally by the JavaScript engine to optimize property access. When an object is created, a hidden class is assigned to it. As properties are added, the hidden class may change, but these changes are managed efficiently to avoid performance hits.
+Inline Caches: When accessing a property, the engine records the type of object and the offset of the property within the object. If the same type of object is accessed later, the engine can quickly retrieve the property value using this cached information.
+3. Prototype Chain
+Every JavaScript object has a prototype, which is another object from which it can inherit properties. This is known as the prototype chain. When a property is accessed on an object, the engine first checks the object itself. If the property is not found, it then checks the object's prototype, and this process continues up the chain until the property is found or the end of the chain is reached.
+
+Here's an example demonstrating the prototype chain:
+
+javascript
+Copy code
+const animal = {
+    species: "Animal",
+    makeSound: function() {
+        console.log("Some generic sound");
+    }
+};
+
+const dog = Object.create(animal);
+dog.bark = function() {
+    console.log("Woof! Woof!");
+};
+
+dog.makeSound(); // Output: Some generic sound
+dog.bark();      // Output: Woof! Woof!
+In this example, dog inherits the makeSound method from animal through the prototype chain.
+
+Performance Considerations
+Understanding the internal representation of objects helps in writing more performant JavaScript code. Here are a few tips:
+
+Avoid Excessive Property Changes: Frequently adding or deleting properties can cause the engine to switch to dictionary mode, which can slow down property access.
+Use Consistent Property Names: Accessing properties with consistent names can benefit from inline caches, improving access speed.
+Leverage Prototypes: Use prototypes to share methods among objects of the same type, reducing memory usage and improving performance.
+Conclusion
+Objects are a cornerstone of JavaScript, providing a flexible and powerful way to manage data. By understanding their internal representation, including property storage, hidden classes, inline caches, and the prototype chain, developers can write more efficient and effective code. Whether you're building simple scripts or complex applications, mastering JavaScript objects will enhance your programming skills and optimize your applications' performance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
